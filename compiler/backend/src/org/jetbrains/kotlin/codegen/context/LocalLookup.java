@@ -116,9 +116,9 @@ public interface LocalLookup {
                     return StackValue.field(localType, localType, JvmAbi.INSTANCE_FIELD, true, StackValue.LOCAL_0, vd);
                 }
 
-                String localFunClassName = callableClass.getName().asString();
-                int localClassIndexStart = localFunClassName.lastIndexOf('$');
-                String localFunSuffix = localClassIndexStart >= 0 ? localFunClassName.substring(localClassIndexStart) : "";
+                String internalName = localType.getInternalName();
+                int localClassIndexStart = localType.getInternalName().lastIndexOf('$');
+                String localFunSuffix = localClassIndexStart >= 0 ? internalName.substring(localClassIndexStart) : "";
 
                 String fieldName = "$" + vd.getName() + localFunSuffix;
                 StackValue.StackValueWithSimpleReceiver innerValue = StackValue.field(localType, classType, fieldName, false,
